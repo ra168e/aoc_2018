@@ -29,6 +29,7 @@ string reduce(string line)
         {
             newline.erase(i-1, 2);
             out = reduce(newline);
+            break;
         }
     }
     return out;
@@ -36,8 +37,8 @@ string reduce(string line)
 
 int main()
 {
-    string example = "wWEbBpPeCQOoUuqc";
-    cout << reduce(example) << endl;
+    string example = read_line("input5.txt");
+    cout << reduce(example).length() << endl;
 }
 
 
