@@ -58,7 +58,7 @@ void find_sleep_minutes(int atime, int stime, vector<int> &vec)
 }
 
 string print_vec(const vector<int> &vec, const string delimiter) {
-    stringstream  s;
+    stringstream s;
     copy(vec.begin(),vec.end(), ostream_iterator<int>(s,delimiter.c_str()));
     return s.str();
 }

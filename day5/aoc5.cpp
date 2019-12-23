@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
+#include <numeric>
+#include <algorithm>
+#include <climits>
 
 using namespace std;
 
@@ -35,10 +38,30 @@ string reduce(string line)
     return out;
 }
 
+int min_lengths(string reduced)
+{
+    char chrange[26];
+    iota(chrange, chrange + 26, 'a');
+    int min_len = INT_MAX;
+    for (const char& c: chrange)
+    {
+       string temp(reduced.begin(), reduced.end());
+       temp.erase(remove(temp.begin(), temp.end(), c), temp.end());
+       temp.erase(remove(temp.begin(), temp.end(), char(c - 32)), temp.end());
+       int current = reduce(temp).length();
+       if (current < min_len)
+       {
+           min_len = current;
+       }
+    }
+    return min_len;
+}
+
 int main()
 {
     string example = read_line("input5.txt");
-    cout << reduce(example).length() << endl;
+    cout << "part 1: " << reduce(example).length() << endl;
+    cout << "part 2: " << min_lengths(example) << endl;
 }
 
 
